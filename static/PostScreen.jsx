@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { View, StatusBar, Button } from "react-native";
+import { View, StatusBar, Button, Alert } from "react-native";
 import styled from "styled-components/native";
 import { Spinner } from "../shared/Spinner";
 import { deletePost } from "../core/deletePost";
 import { fetchPost } from "../core/fetchPost";
+import { useSelector } from "react-redux";
 
 const PostImage = styled.Image`
   border-radius: 10px;
@@ -22,9 +23,10 @@ const PostText = styled.Text`
 `;
 
 export function PostScreen({ route, navigation }) {
+  const { name, url } = useSelector((state) => state.userReducer);
   const [isLoading, setIsLoading] = useState(false);
   const [state, setState] = useState({});
-  const { id, title, refreshInit } = route.params;
+  const { id, title } = route.params;
 
   useEffect(() => {
     navigation.setOptions({ title });
@@ -47,6 +49,13 @@ export function PostScreen({ route, navigation }) {
         <Button
           title="Delete post"
           onPress={() => {
+            if (name !== title) {
+              Alert.alert(
+                "Oops..",
+                "You cannot delete this post because you are not the author."
+              );
+              return;
+            }
             deletePost(setIsLoading, id, setState);
             navigation.navigate("HomeScreen", {
               refreshInit: Date.now(),
@@ -56,6 +65,13 @@ export function PostScreen({ route, navigation }) {
         <Button
           title="Edit post"
           onPress={() => {
+            if (name !== title) {
+              Alert.alert(
+                "Oops..",
+                "You cannot edit this post because you are not the author."
+              );
+              return;
+            }
             navigation.navigate("PostEditScreen", { id, title });
           }}
         />

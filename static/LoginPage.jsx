@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Alert, TextInput, View, Button, StyleSheet, Text } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { setName, setUrl } from "../core/redux/actions";
-import { useEffect } from "react";
 import { styled } from "styled-components/native";
 
 const PostImage = styled.Image`

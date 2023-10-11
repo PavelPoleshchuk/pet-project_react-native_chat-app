@@ -6,6 +6,6 @@ export function fetchPosts(setIsLoading, setPosts) {
   fetch(BASE_URL)
     .then((res) => res.json())
     .then((data) => setPosts(data))
-    .catch(() => Alert.alert("Oops..", "Fetch function HomeScreen error"))
+    .catch(() => Alert.alert("Oops..", "FetchPosts error"))
     .finally(() => setIsLoading(false));
 }

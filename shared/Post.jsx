@@ -28,7 +28,6 @@ const PostDate = styled.Text`
   font-weight: 500;
   color: rgba(0, 0, 0, 0.5);
 `;
-//"https://memepedia.ru/wp-content/uploads/2023/09/sholc-mem-768x512.jpg"
 export const Post = ({ text, imageUrl, date, author }) => {
   return (
     <PostView>

@@ -54,7 +54,7 @@ export function HomeScreen({ route, navigation }) {
             onPress={() => {
               navigation.navigate("PostScreen", {
                 id: item.id,
-                title: `Author: ${item.title}`,
+                title: item.title,
               });
             }}
           >

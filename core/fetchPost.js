@@ -6,6 +6,6 @@ export function fetchPost(setIsLoading, id, setState) {
   fetch(`${BASE_URL}/${id}`)
     .then((res) => res.json())
     .then((data) => setState(data))
-    .catch(() => Alert.alert("Oops", "Fetch PostScreen error"))
+    .catch(() => Alert.alert("Oops", "fetchPost error"))
     .finally(() => setIsLoading(false));
 }
