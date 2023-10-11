@@ -18,3 +18,11 @@ npm i date-fns
     var date = localTime ? new Date(localTime) : new Date();
     return new Date(date.getTime() + (date.getTimezoneOffset() * -60000)).toISOString();
 })()
+
+{
+date: "2023-10-10T16:50:13.688Z",
+title: "Pavel Poleshchuk",
+imageUrl: "https://img.hhcdn.ru/photo/707204943.jpeg?t=1697050099&h=XWfXHImZq332WShwiUDSTg",
+text: "Hello, I made this program. This is my first experience with React Native. Unfortunately, I did not have time to complete the entire task.",
+id: "7"
+}

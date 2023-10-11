@@ -3,6 +3,7 @@ import { View, StatusBar, Button } from "react-native";
 import styled from "styled-components/native";
 import { Spinner } from "../shared/Spinner";
 import { deletePost } from "../core/deletePost";
+import { fetchPost } from "../core/fetchPost";
 
 const PostImage = styled.Image`
   border-radius: 10px;
@@ -29,16 +30,7 @@ export function PostScreen({ route, navigation }) {
     navigation.setOptions({ title });
   }, []);
 
-  function fetchPost() {
-    setIsLoading(true);
-    fetch(`https://651eed7444a3a8aa476936f2.mockapi.io/posts/${id}`)
-      .then((res) => res.json())
-      .then((data) => setState(data))
-      .catch(() => Alert.alert("Oops", "Fetch PostScreen error"))
-      .finally(() => setIsLoading(false));
-  }
-
-  useEffect(fetchPost, []);
+  useEffect(() => fetchPost(setIsLoading, id, setState), []);
 
   if (isLoading) {
     return <Spinner />;
@@ -56,7 +48,9 @@ export function PostScreen({ route, navigation }) {
           title="Delete post"
           onPress={() => {
             deletePost(setIsLoading, id, setState);
-            navigation.navigate("HomeScreen");
+            navigation.navigate("HomeScreen", {
+              refreshInit: Date.now(),
+            });
           }}
         />
         <Button

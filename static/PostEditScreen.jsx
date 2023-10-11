@@ -2,27 +2,22 @@ import React, { useState, useEffect } from "react";
 import { View, StatusBar, Button, TextInput } from "react-native";
 import { Spinner } from "../shared/Spinner";
 import { editPost } from "../core/editPost";
+import { fetchPost } from "../core/fetchPost";
 import { getDateInIsoString } from "../tools/getDateInIsoString";
 
 export function PostEditScreen({ route, navigation }) {
   const [isLoading, setIsLoading] = useState(false);
-  const [state, setState] = useState("");
+  const [text, setText] = useState("");
   const { id, title } = route.params;
 
   useEffect(() => {
     navigation.setOptions({ title: `Edit post: "${title}"` });
   }, []);
 
-  function fetchPost() {
-    setIsLoading(true);
-    fetch(`https://651eed7444a3a8aa476936f2.mockapi.io/posts/${id}`)
-      .then((res) => res.json())
-      .then((data) => setState(data.text))
-      .catch(() => Alert.alert("Oops", "Fetch PostScreen error"))
-      .finally(() => setIsLoading(false));
-  }
-
-  useEffect(fetchPost, []);
+  useEffect(
+    () => fetchPost(setIsLoading, id, (data) => setText(data.text)),
+    []
+  );
 
   if (isLoading) {
     return <Spinner />;
@@ -37,15 +32,15 @@ export function PostEditScreen({ route, navigation }) {
           padding: 10,
         }}
         multiline={true}
-        value={state}
-        onChangeText={(newText) => setState(newText)}
+        value={String(text)}
+        onChangeText={(value) => setText(value)}
       />
 
       <Button
         title="Save post"
         onPress={() => {
           editPost(setIsLoading, id, {
-            text: state,
+            text: text,
             date: getDateInIsoString(),
           });
           navigation.navigate("HomeScreen", {

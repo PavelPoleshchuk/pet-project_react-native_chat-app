@@ -11,6 +11,7 @@ import { Post } from "../shared/Post";
 import { Spinner } from "../shared/Spinner";
 import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
+import { fetchPosts } from "../core/fetchPosts";
 
 const PlusButton = styled.TouchableOpacity`
   position: absolute;
@@ -33,25 +34,19 @@ export function HomeScreen({ route, navigation }) {
 
   useEffect(() => setRerender(refreshInit), [refreshInit]);
 
-  function fetchPosts() {
-    setIsLoading(true);
-    fetch("https://651eed7444a3a8aa476936f2.mockapi.io/posts")
-      .then((res) => res.json())
-      .then((data) => setPosts(data))
-      .catch(() => Alert.alert("Oops..", "Fetch function HomeScreen error"))
-      .finally(() => setIsLoading(false));
-  }
-  useEffect(fetchPosts, [rerender]);
+  useEffect(() => fetchPosts(setIsLoading, setPosts), [rerender]);
 
   if (isLoading) {
     return <Spinner />;
   }
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <FlatList
-        
         refreshControl={
-          <RefreshControl refreshing={isLoading} onRefresh={fetchPosts} />
+          <RefreshControl
+            refreshing={isLoading}
+            onRefresh={() => fetchPosts(setIsLoading, setPosts)}
+          />
         }
         data={posts}
         renderItem={({ item }) => (
@@ -59,7 +54,7 @@ export function HomeScreen({ route, navigation }) {
             onPress={() => {
               navigation.navigate("PostScreen", {
                 id: item.id,
-                title: item.title,
+                title: `Author: ${item.title}`,
               });
             }}
           >
