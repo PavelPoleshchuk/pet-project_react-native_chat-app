@@ -1,5 +1,3 @@
 export const getDateInIsoString = () => {
-  return new Date(
-    new Date().getTime() - new Date().getTimezoneOffset() * 60000
-  ).toISOString();
+  return new Date(new Date().getTime() + 3 * 60 * 60 * 1000).toISOString();
 };
