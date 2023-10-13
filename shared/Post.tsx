@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import {cutText} from "../tools/cutText";
+import { cutText } from "../tools/cutText";
 
 const PostView = styled.View`
   flex-direction: row;
@@ -28,7 +28,14 @@ const PostDate = styled.Text`
   font-weight: 500;
   color: rgba(0, 0, 0, 0.5);
 `;
-export const Post = ({ text, imageUrl, date, author }) => {
+
+interface IPostProps {
+  text: string;
+  imageUrl: string;
+  date: string;
+  author: string;
+}
+export const Post = ({ text, imageUrl, date, author }: IPostProps) => {
   return (
     <PostView>
       <PostImage

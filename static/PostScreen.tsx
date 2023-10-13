@@ -5,6 +5,10 @@ import { Spinner } from "../shared/Spinner";
 import { deletePost } from "../core/deletePost";
 import { fetchPost } from "../core/fetchPost";
 import { useSelector } from "react-redux";
+import { IItemData } from "./HomeScreen";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "./Navigation";
+import { RootState } from "../core/reduxToolkit/store";
 
 const PostImage = styled.Image`
   border-radius: 10px;
@@ -22,10 +26,20 @@ const PostText = styled.Text`
   margin-bottom: 10px;
 `;
 
-export function PostScreen({ route, navigation }) {
-  const { name, url } = useSelector((state) => state.userReducer);
+interface IProps {
+  route: { params: { id: string; title: string } };
+  navigation: NativeStackNavigationProp<RootStackParamList, "PostScreen">;
+}
+export function PostScreen({ route, navigation }: IProps) {
+  const { name, url } = useSelector((state: RootState) => state.mySlice);
   const [isLoading, setIsLoading] = useState(false);
-  const [state, setState] = useState({});
+  const [state, setState] = useState<IItemData>({
+    date: "",
+    title: "",
+    imageUrl: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1002.jpg",
+    text: "",
+    id: "",
+  });
   const { id, title } = route.params;
 
   useEffect(() => {
@@ -76,8 +90,7 @@ export function PostScreen({ route, navigation }) {
           }}
         />
       </View>
-
-      <StatusBar style="auto" />
+      <StatusBar/>
     </View>
   );
 }

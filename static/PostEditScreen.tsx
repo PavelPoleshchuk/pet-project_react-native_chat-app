@@ -4,8 +4,16 @@ import { Spinner } from "../shared/Spinner";
 import { editPost } from "../core/editPost";
 import { fetchPost } from "../core/fetchPost";
 import { getDateInIsoString } from "../tools/getDateInIsoString";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "./Navigation";
+import { IItemData } from "./HomeScreen";
 
-export function PostEditScreen({ route, navigation }) {
+interface IProps {
+  route: {params:{ id:string, title:string }};
+  navigation: NativeStackNavigationProp<RootStackParamList, "PostEditScreen">;
+}
+
+export function PostEditScreen({ route, navigation }:IProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [text, setText] = useState("");
   const { id, title } = route.params;
@@ -48,7 +56,7 @@ export function PostEditScreen({ route, navigation }) {
           });
         }}
       />
-      <StatusBar style="auto" />
+      <StatusBar />
     </View>
   );
 }

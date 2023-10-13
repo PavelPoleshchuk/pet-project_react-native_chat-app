@@ -1,7 +1,11 @@
-import {Alert} from 'react-native'
+import { Alert } from "react-native";
 import { BASE_URL } from "./addPost";
+import { IItemData } from "../static/HomeScreen";
 
-export function fetchPosts(setIsLoading, setPosts) {
+export function fetchPosts(
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  setPosts: React.Dispatch<React.SetStateAction<IItemData[]>>
+) {
   setIsLoading(true);
   fetch(BASE_URL)
     .then((res) => res.json())

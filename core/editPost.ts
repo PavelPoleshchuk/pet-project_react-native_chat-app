@@ -1,7 +1,16 @@
 import { BASE_URL } from "./addPost";
 import { Alert } from "react-native";
 
-export function editPost(setIsLoading, id, body) {
+export type IEditPostBody = {
+  text: string;
+  date: string;
+};
+
+export function editPost(
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  id: string,
+  body:IEditPostBody
+) {
   setIsLoading(true);
   fetch(`${BASE_URL}/${id}`, {
     method: "PATCH",

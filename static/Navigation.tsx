@@ -5,15 +5,30 @@ import { PostScreen } from "./PostScreen";
 import { PostEditScreen } from "./PostEditScreen";
 import { PostAddScreen } from "./PostAddScreen ";
 import { LoginPage } from "./LoginPage";
+import { store } from "../core/reduxToolkit/store";
 import { Provider } from 'react-redux';
-import {Store} from "../core/redux/store"
 
+export type RootStackParamList = {
+  LoginPage: undefined;
+  HomeScreen: {
+    refreshInit: number;
+  };
+  PostScreen: {
+    id: string;
+    title: string;
+  };
+  PostEditScreen: {
+    id: string;
+    title: string;
+  };
+  PostAddScreen: undefined;
+};
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const Navigation = () => {
   return (
-    <Provider store={Store}>
+    <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen

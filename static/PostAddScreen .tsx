@@ -5,6 +5,9 @@ import { Spinner } from "../shared/Spinner";
 import { addPost } from "../core/addPost";
 import { getDateInIsoString } from "../tools/getDateInIsoString";
 import { useSelector } from "react-redux";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "./Navigation";
+import { RootState } from "../core/reduxToolkit/store";
 
 const AddTextInput = styled.TextInput`
   height: 100px;
@@ -13,8 +16,11 @@ const AddTextInput = styled.TextInput`
   font-size: 20px;
 `;
 
-export function PostAddScreen({ navigation }) {
-  const { name, url } = useSelector((state) => state.userReducer);
+interface IProps {
+  navigation: NativeStackNavigationProp<RootStackParamList, "PostAddScreen">;
+}
+export function PostAddScreen({ navigation }:IProps) {
+  const { name, url } = useSelector((state: RootState) => state.mySlice);
   const [isLoading, setIsLoading] = useState(false);
 
   const [text, setText] = useState("");
@@ -49,7 +55,7 @@ export function PostAddScreen({ navigation }) {
           });
         }}
       />
-      <StatusBar style="auto" />
+      <StatusBar />
     </View>
   );
 }

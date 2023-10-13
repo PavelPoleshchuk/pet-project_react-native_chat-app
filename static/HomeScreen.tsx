@@ -12,6 +12,8 @@ import { Spinner } from "../shared/Spinner";
 import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import { fetchPosts } from "../core/fetchPosts";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "./Navigation";
 
 const PlusButton = styled.TouchableOpacity`
   position: absolute;
@@ -25,11 +27,22 @@ const PlusButton = styled.TouchableOpacity`
   background-color: #3b8ad5;
   opacity: 0.7;
 `;
+export interface IItemData {
+  date: string;
+  title: string;
+  imageUrl: string;
+  text: string;
+  id: string;
+}
+interface IProps {
+  route: {params:{refreshInit:number}};
+  navigation: NativeStackNavigationProp<RootStackParamList, "HomeScreen">;
+}
 
-export function HomeScreen({ route, navigation }) {
+export function HomeScreen({ route, navigation }: IProps) {
   const [rerender, setRerender] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<IItemData[]>([]);
   const { refreshInit } = route.params;
 
   useEffect(() => setRerender(refreshInit), [refreshInit]);
@@ -75,7 +88,7 @@ export function HomeScreen({ route, navigation }) {
       >
         <Ionicons name="ios-add" size={40} color="white" />
       </PlusButton>
-      <StatusBar style="auto" />
+      <StatusBar/>
     </View>
   );
 }

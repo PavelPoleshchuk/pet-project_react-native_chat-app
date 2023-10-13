@@ -1,8 +1,12 @@
 import React from "react";
 import { Alert, TextInput, View, Button, StyleSheet, Text } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
-import { setName, setUrl } from "../core/redux/actions";
 import { styled } from "styled-components/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "./Navigation";
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from "../core/reduxToolkit/store";
+import { setName, setUrl } from "../core/reduxToolkit/slices";
+import { StatusBar } from "expo-status-bar";
 
 const PostImage = styled.Image`
   width: 60px;
@@ -10,9 +14,13 @@ const PostImage = styled.Image`
   border-radius: 15px;
   margin-right: 15px;
 `;
+interface IProps {
+  navigation: NativeStackNavigationProp<RootStackParamList, "LoginPage">;
+  }
 
-export const LoginPage = ({ navigation }) => {
-  const { name, url } = useSelector((state) => state.userReducer);
+  
+export const LoginPage = ({ navigation }:IProps) => {
+  const { name, url } = useSelector((state: RootState) => state.mySlice);
   const dispatch = useDispatch();
 
   const setLogin = () => {

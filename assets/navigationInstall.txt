@@ -19,10 +19,20 @@ npm i date-fns
     return new Date(date.getTime() + (date.getTimezoneOffset() * -60000)).toISOString();
 })()
 
+DATA=================
+[
+{
+date: "2023-10-10T16:40:13.688Z",
+title: "Elon Musk",
+imageUrl: "https://vgorode.ua/img/article/12212/47_main-v1664820079.jpg",
+text: "Who made this cool app?",
+id: "6"
+},
 {
 date: "2023-10-10T16:50:13.688Z",
 title: "Pavel Poleshchuk",
 imageUrl: "https://img.hhcdn.ru/photo/707204943.jpeg?t=1697050099&h=XWfXHImZq332WShwiUDSTg",
-text: "Hello, I made this program. This is my first experience with React Native. Unfortunately, I did not have time to complete the entire task.",
+text: "Hello Elon, I made this app. Unfortunately, I didn’t have time to do everything I planned, but I'm going to add TypeScript this week.",
 id: "7"
 }
+]
