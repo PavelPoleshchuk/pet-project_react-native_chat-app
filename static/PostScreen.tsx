@@ -9,6 +9,7 @@ import { IItemData } from "./HomeScreen";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "./Navigation";
 import { RootState } from "../core/reduxToolkit/store";
+import { DEFAULT_AVATAR_URL } from "../core/reduxToolkit/slices";
 
 const PostImage = styled.Image`
   border-radius: 10px;
@@ -31,12 +32,12 @@ interface IProps {
   navigation: NativeStackNavigationProp<RootStackParamList, "PostScreen">;
 }
 export function PostScreen({ route, navigation }: IProps) {
-  const { name, url } = useSelector((state: RootState) => state.mySlice);
+  const { name} = useSelector((state: RootState) => state.mySlice);
   const [isLoading, setIsLoading] = useState(false);
   const [state, setState] = useState<IItemData>({
     date: "",
     title: "",
-    imageUrl: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1002.jpg",
+    imageUrl: DEFAULT_AVATAR_URL,
     text: "",
     id: "",
   });

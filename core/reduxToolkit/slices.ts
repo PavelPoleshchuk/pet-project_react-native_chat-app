@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+export const DEFAULT_AVATAR_URL="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1002.jpg"
+
 const dataSlice = createSlice({
-  name: "mySlice",
+  name: "reduxData",
   initialState: {
     name: "",
-    url: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1002.jpg",
+    url: DEFAULT_AVATAR_URL,
   },
 
   reducers: {

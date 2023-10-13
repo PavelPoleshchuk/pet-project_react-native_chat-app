@@ -6,7 +6,6 @@ import { fetchPost } from "../core/fetchPost";
 import { getDateInIsoString } from "../tools/getDateInIsoString";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "./Navigation";
-import { IItemData } from "./HomeScreen";
 
 interface IProps {
   route: {params:{ id:string, title:string }};

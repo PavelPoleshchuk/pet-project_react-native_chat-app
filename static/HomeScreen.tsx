@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   StatusBar,
   View,
-  Alert,
   FlatList,
   RefreshControl,
   TouchableOpacity,

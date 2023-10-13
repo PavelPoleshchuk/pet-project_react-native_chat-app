@@ -1,3 +1,4 @@
+import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { HomeScreen } from "./HomeScreen";
@@ -6,7 +7,7 @@ import { PostEditScreen } from "./PostEditScreen";
 import { PostAddScreen } from "./PostAddScreen ";
 import { LoginPage } from "./LoginPage";
 import { store } from "../core/reduxToolkit/store";
-import { Provider } from 'react-redux';
+import { Provider } from "react-redux";
 
 export type RootStackParamList = {
   LoginPage: undefined;

@@ -6,7 +6,6 @@ import { RootStackParamList } from "./Navigation";
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from "../core/reduxToolkit/store";
 import { setName, setUrl } from "../core/reduxToolkit/slices";
-import { StatusBar } from "expo-status-bar";
 
 const PostImage = styled.Image`
   width: 60px;
