@@ -32,7 +32,7 @@ interface IProps {
   navigation: NativeStackNavigationProp<RootStackParamList, "PostScreen">;
 }
 export function PostScreen({ route, navigation }: IProps) {
-  const { name} = useSelector((state: RootState) => state.mySlice);
+  const { name} = useSelector((state: RootState) => state.reduxState);
   const [isLoading, setIsLoading] = useState(false);
   const [state, setState] = useState<IItemData>({
     date: "",

@@ -19,7 +19,7 @@ interface IProps {
 
   
 export const LoginPage = ({ navigation }:IProps) => {
-  const { name, url } = useSelector((state: RootState) => state.mySlice);
+  const { name, url } = useSelector((state: RootState) => state.reduxState);
   const dispatch = useDispatch();
 
   const setLogin = () => {

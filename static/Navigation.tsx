@@ -31,31 +31,51 @@ export const Navigation = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: "#f9832e",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          }}
+        >
           <Stack.Screen
             name="LoginPage"
             component={LoginPage}
-            options={{ title: "Enter username and avatar Url" }}
+            options={{
+              title: "Enter username and avatar Url",
+            }}
           />
           <Stack.Screen
             name="HomeScreen"
             component={HomeScreen}
-            options={{ title: "All posts" }}
+            options={{
+              title: "All posts",
+            }}
           />
           <Stack.Screen
             name="PostScreen"
             component={PostScreen}
-            options={{ title: "Post" }}
+            options={{
+              title: "Post",
+            }}
           />
           <Stack.Screen
             name="PostEditScreen"
             component={PostEditScreen}
-            options={{ title: "Edit post" }}
+            options={{
+              title: "Edit post",
+            }}
           />
           <Stack.Screen
             name="PostAddScreen"
             component={PostAddScreen}
-            options={{ title: "Add post" }}
+            options={{
+              title: "Add post",
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>

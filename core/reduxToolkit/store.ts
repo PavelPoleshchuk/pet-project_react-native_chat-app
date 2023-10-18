@@ -3,7 +3,7 @@ import myReducer from './slices';
 
 export const store = configureStore({
   reducer: {
-    mySlice: myReducer
+    reduxState: myReducer
   }
 });
 

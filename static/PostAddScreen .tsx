@@ -20,7 +20,7 @@ interface IProps {
   navigation: NativeStackNavigationProp<RootStackParamList, "PostAddScreen">;
 }
 export function PostAddScreen({ navigation }:IProps) {
-  const { name, url } = useSelector((state: RootState) => state.mySlice);
+  const { name, url } = useSelector((state: RootState) => state.reduxState);
   const [isLoading, setIsLoading] = useState(false);
 
   const [text, setText] = useState("");
